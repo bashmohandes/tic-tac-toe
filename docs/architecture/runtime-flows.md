@@ -60,7 +60,7 @@ sequenceDiagram
   Client->>Gateway: game:play(room, token, commandId, index)
   Gateway->>Gateway: Rate-limit and validate schema
   Gateway->>Manager: playMove(payload, socketId)
-  Manager->>Manager: Lock command; check receipt and authorize seat
+  Manager->>Manager: Lock command, check receipt, and authorize seat
   Manager->>Rules: matchReducer(state, play)
   Rules-->>Manager: New state or unchanged invalid move
   alt accepted move
