@@ -124,6 +124,13 @@ and cross-instance Socket.IO delivery. Read
 [the scale and product plan](docs/scale-and-product-plan.md) before raising
 the instance count.
 
+## Architecture
+
+The architecture documentation includes system, container, component, data,
+and runtime-flow diagrams, along with the operational constraints that follow
+from the current single-process room authority. Start with the
+[architecture documentation](docs/architecture/README.md).
+
 ## Structure
 
 - `src/game/engine.ts` contains the pure game rules.
