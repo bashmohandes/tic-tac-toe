@@ -1,0 +1,35 @@
+services:
+  - type: web
+    name: tic-tac-toe-online
+    runtime: node
+    plan: starter
+    numInstances: 1
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 20.20.2
+      - key: TRUST_PROXY
+        value: "1"
+      - key: PROFILE_CREATION_RATE_LIMIT_MAX
+        value: "10"
+      - key: PROFILE_CREATION_RATE_LIMIT_WINDOW_MS
+        value: "600000"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: tic-tac-toe-history
+          property: connectionString
+      - key: HISTORY_RETENTION_DAYS
+        value: "365"
+      - key: ADMIN_API_KEY
+        generateValue: true
+
+databases:
+  - name: tic-tac-toe-history
+    plan: basic-256mb
+    databaseName: tic_tac_toe
+    user: tic_tac_toe
+    ipAllowList: []
